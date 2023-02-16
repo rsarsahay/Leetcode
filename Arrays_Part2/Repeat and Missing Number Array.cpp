@@ -15,19 +15,22 @@ If you find any index value = 0 then that is the missing element B.
   S.C=O(n)
             */
 
-vector<int> Solution::repeatedNumber(const vector<int> &A) {
-    int n=A.size() +1;
-    vector<int>new_A(n,0);
-    vector<int>res;
-    
-    for(int i=0; i<A.size(); i++)
-    new_A[A[i]]++;
-    
-    for(int i=A.size(); i>=1; i--)
+vector<int> Solution::repeatedNumber(const vector<int> &A) 
+{
+    long n=A.size();
+    vector<long> B(n+1,0);
+      
+    for(long i=0;i<A.size();i++)
+    B[A[i]]++;
+
+    long repeat,miss;
+    for(long i=1;i<=A.size();i++)
     {
-        if(new_A[i] > 1 ||new_A[i]==0)
-        res.push_back(i);
+        if(B[i]==2)
+        repeat=i;
+        if(B[i]==0)
+        miss=i;
     }
-    
-    return res;
-}
+    vector<int> result{repeat,miss};
+    return result;
+}  
